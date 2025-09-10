@@ -1,0 +1,41 @@
+name: 🚀 Release
+
+on:
+  push:
+    tags:
+      - 'v0.0.0'   # Runs workflow when a tag like v1.0.0 is pushed
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v3
+
+      - name: 🛠️ Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 📝 Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: "Release ${{ github.ref_name }} 🎉"
+          body: |
+            ## 🚀 What's New in ${{ github.ref_name }}
+            - 🎙️ Voice recognition
+            - 🌐 Open YouTube, Google, etc.
+            - 💬 AI-generated answers
+            - 🔊 Text-to-Speech responses
+            - ⚡ Easy setup
+
+            ---
+            Made with ❤️ by [Ankan Nandi]
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
