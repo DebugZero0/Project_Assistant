@@ -6,7 +6,7 @@ import musicLib
 import google.generativeai as genai 
 import os 
 
-genai.configure(api_key="AIzaSyDhFVgb1y0R_f1c9TVwGQznWch26RXLlgw") 
+genai.configure(api_key="Your_Google_API_Key") 
 
 def aiPrompt(c):
     model = genai.GenerativeModel("gemini-2.5-flash")
